@@ -1,7 +1,3 @@
-Below is an updated and refined version of your README:
-
----
-
 # Employee Dashboard Implementation Using AWS Services
 
 ## Work in Progress
