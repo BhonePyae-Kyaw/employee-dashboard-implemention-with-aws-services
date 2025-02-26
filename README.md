@@ -30,7 +30,7 @@ This project demonstrates an Employee Dashboard built with a fully serverless an
 - **Hosting:**  
   - Static site hosted on an Amazon S3 bucket.
 - **Access URL:**  
-  - [http://employee-dashboard-app-s3bucket.s3-website-us-east-1.amazonaws.com/](http://employee-dashboard-app-s3bucket.s3-website-us-east-1.amazonaws.com/)
+  - [http://employee-dashboard-app-s3bucket.s3-website-us-east-1.amazonaws.com/](https://d2llat4at3sykp.cloudfront.net/)
 
 ### Backend & Data Layer
 
