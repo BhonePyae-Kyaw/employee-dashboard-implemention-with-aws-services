@@ -14,15 +14,12 @@ This project demonstrates an Employee Dashboard built with a fully serverless an
   - AWS Lambda functions for data manipulation.
 - **Database:**  
   - Amazon RDS (MySQL) serves as the primary data store.
- 
-![In Progress: Architecture Diagram](images/architecture.png)
-
-## Upcoming Enhancements
-
 - **CloudFront:**  
-  - Integration for improved content delivery and security.
+  - Integration for improved content delivery and cacheing.
 - **Caching:**  
   - Implementation of caching using Amazon ElastiCache.
+ 
+![In Progress: Architecture Diagram](images/architecture.png)
 
 ## Application Architecture
 
