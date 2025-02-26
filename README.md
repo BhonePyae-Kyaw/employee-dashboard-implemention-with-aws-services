@@ -70,7 +70,7 @@ This project demonstrates an Employee Dashboard built with a fully serverless an
 ## Documentation & Implementation Details
 
 - **Step-by-Step Development Process:**
-  - A detailed guide covering architecture decisions, troubleshooting, and optimizations is available on [Excalidraw](https://excalidraw.com/#json=G2Ui8JUMJXeXy6X10nOw8,OkT6xYOuzXdpsDIGDwyXBw).
+  - A detailed guide covering architecture decisions, troubleshooting, and optimizations is available on [Excalidraw](https://excalidraw.com/#json=ZczcBXl_Qj5JZQ02u88z0,nijDA9DYEZuyAIkFQMBiOg).
   
   ![Details Processes Architecture Diagram](images/architecture_struggle.png)
 
