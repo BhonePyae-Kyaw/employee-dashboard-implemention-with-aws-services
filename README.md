@@ -1,6 +1,6 @@
 # Employee Dashboard Implementation Using AWS Services
 
-![Architecture Diagram](images/architecture.png)
+![Architecture Diagram](images/architecture_2.png)
 
 ## Overview
 
