@@ -35,7 +35,7 @@ This project demonstrates an Employee Dashboard built with a fully serverless an
 - **Authentication:**
   - (If applicable) AWS Cognito for user authentication and session management.
 - **Access URL:**
-  - [Live Demo](https://d2llat4at3sykp.cloudfront.net/)
+  - [Live Demo](https://d2danr9nbbombg.cloudfront.net/)
 
 ### Backend & Data Layer
 
