@@ -8,3 +8,4 @@ region = "ap-southeast-2"
 capabilities = "CAPABILITY_IAM"
 resolve_s3 = true
 confirm_changeset = true
+parameter_overrides = "DomainName=employee-aws.bhonepyaekyaw.site CertificateArn=arn:aws:acm:us-east-1:164165963425:certificate/614e4c47-c57c-40fe-a919-7700aef71943"

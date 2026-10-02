@@ -12,6 +12,19 @@ Parameters:
   CacheTtlSeconds:
     Type: Number
     Default: 300
+  DomainName:
+    Type: String
+    Default: ""
+    Description: Optional custom domain for the dashboard, e.g. employee-aws.example.com
+  CertificateArn:
+    Type: String
+    Default: ""
+    Description: ACM certificate for DomainName - must be in us-east-1 (CloudFront requirement)
+
+Conditions:
+  HasCustomDomain: !And
+    - !Not [!Equals [!Ref DomainName, ""]]
+    - !Not [!Equals [!Ref CertificateArn, ""]]
 
 Globals:
   Function:
@@ -142,7 +155,10 @@ Resources:
     Type: AWS::Serverless::HttpApi
     Properties:
       CorsConfiguration:
-        AllowOrigins: ["*"]
+        AllowOrigins: !If
+          - HasCustomDomain
+          - [!Sub "https://${DomainName}", !Sub "https://${FrontendDistribution.DomainName}", "http://localhost:5173"]
+          - ["*"]
         AllowMethods: [GET, POST, PUT, DELETE]
         AllowHeaders: [content-type]
       DefaultRouteSettings:
@@ -197,6 +213,13 @@ Resources:
     Properties:
       DistributionConfig:
         Enabled: true
+        Aliases: !If [HasCustomDomain, [!Ref DomainName], !Ref AWS::NoValue]
+        ViewerCertificate: !If
+          - HasCustomDomain
+          - AcmCertificateArn: !Ref CertificateArn
+            SslSupportMethod: sni-only
+            MinimumProtocolVersion: TLSv1.2_2021
+          - !Ref AWS::NoValue
         DefaultRootObject: index.html
         HttpVersion: http2
         PriceClass: PriceClass_100
@@ -236,4 +259,7 @@ Outputs:
   DistributionId:
     Value: !Ref FrontendDistribution
   DashboardUrl:
-    Value: !Sub "https://${FrontendDistribution.DomainName}"
+    Value: !If [HasCustomDomain, !Sub "https://${DomainName}", !Sub "https://${FrontendDistribution.DomainName}"]
+  CloudFrontDomain:
+    Description: Point the custom domain's CNAME here
+    Value: !GetAtt FrontendDistribution.DomainName
