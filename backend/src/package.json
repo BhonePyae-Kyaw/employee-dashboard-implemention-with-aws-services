@@ -1,0 +1,11 @@
+{
+  "name": "employee-dashboard-api",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "dependencies": {
+    "aws-ssl-profiles": "^1.1.2",
+    "memjs": "^1.3.2",
+    "mysql2": "^3.24.5"
+  }
+}
