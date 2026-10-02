@@ -1,34 +1,28 @@
 import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import React from "react";
+import { listEmployees } from "./api";
+import CreateEmployeeForm from "./components/CreateEmployeeForm";
 import EmployeeTable from "./components/EmployeeTable";
 
 function App() {
   // State for storing data from API
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  {
-    /* 
-   This function fetches the highest salary employees - using the API Gateway endpoint.
-  */
-  }
+  // Fetches the top 10 highest salary employees from the API Gateway endpoint.
   const getHighestSalaryEmployees = async () => {
     setLoading(true);
-    const apiUrl =
-      "https://ccwyucha75.execute-api.us-east-1.amazonaws.com/test/highest-salary-employees";
+    setError(null);
     try {
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-      const employees = JSON.parse(data.body);
-      setEmployees(employees);
+      setEmployees(await listEmployees());
+    } catch (err) {
+      console.error("Error fetching employees:", err);
+      setError(err.message);
+    } finally {
       setLoading(false);
-    } catch (error) {
-      console.error("Error fetching employees:", error);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -42,6 +36,7 @@ function App() {
           Employee Management Dashboard
         </h1>
       </header>
+      <CreateEmployeeForm onEmployeeCreated={getHighestSalaryEmployees} />
       <h2 className="text-lg font-semibold text-slate-100 mt-4 mb-2">
         Top 10 Highest Salary Employees
       </h2>
@@ -54,9 +49,14 @@ function App() {
           />
           <p>Fetching data ...</p>
         </div>
+      ) : error ? (
+        <p className="text-red-500">Failed to load employees: {error}</p>
       ) : (
         <div>
-          <EmployeeTable employees={employees} />
+          <EmployeeTable
+            employees={employees}
+            onChanged={getHighestSalaryEmployees}
+          />
         </div>
       )}
     </>
